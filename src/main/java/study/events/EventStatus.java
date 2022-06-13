@@ -1,4 +1,4 @@
-package events;
+package study.events;
 
 public enum EventStatus {
 
