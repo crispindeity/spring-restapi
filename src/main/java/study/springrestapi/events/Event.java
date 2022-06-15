@@ -1,4 +1,4 @@
-package study.events;
+package study.springrestapi.events;
 
 import java.time.LocalDateTime;
 

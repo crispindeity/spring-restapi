@@ -1,4 +1,4 @@
-package study.events;
+package study.springrestapi.events;
 
 public enum EventStatus {
 
