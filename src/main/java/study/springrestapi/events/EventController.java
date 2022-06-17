@@ -1,29 +1,33 @@
 package study.springrestapi.events;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.net.URI;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
-@ComponentScan
+@RequestMapping(value = "/api/events", produces = MediaTypes.HAL_JSON_VALUE)
+@RequiredArgsConstructor
 public class EventController {
 
-    @PostMapping("/api/events")
-    public ResponseEntity createEvent() {
+    private final EventRepository eventRepository;
 
-        URI createdUri = linkTo(
-                methodOn(EventController.class)
-                        .createEvent()
-        )
-                .slash("{id}")
+    @PostMapping
+    public ResponseEntity createEvent(@RequestBody Event event) {
+        Event newEvent = this.eventRepository.save(event);
+
+        URI createdUri = linkTo(EventController.class)
+                .slash(newEvent.getId())
                 .toUri();
-        return ResponseEntity.created(createdUri).build();
+        return ResponseEntity.created(createdUri).body(event);
     }
 
 }
