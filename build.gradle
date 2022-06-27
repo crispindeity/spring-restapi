@@ -27,12 +27,12 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.model mapper:model mapper:3.1.0'
+	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.0'
 
-	compileOnly 'org.project-lombok:lombok'
+	compileOnly "org.projectlombok:lombok"
     runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'org.postgresql:postgresql'
-	annotationProcessor 'org.project-lombok:lombok'
+	annotationProcessor "org.projectlombok:lombok"
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 }
